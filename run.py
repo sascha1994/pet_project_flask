@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_restx import Api
 
 from app.config import Config
@@ -18,6 +19,7 @@ def create_app(config_object):
 
 def register_extensions(application: Flask):
     db.init_app(application)
+    CORS(application)
     api = Api(application, doc='/docs')
     api.add_namespace(genres_ns)
     api.add_namespace(directors_ns)

@@ -1,7 +1,7 @@
-from app.dao.model.director import DirectorModel
-from app.dao.model.genre import GenreModel
-from app.dao.model.movie import MovieModel
-from app.dao.model.user import UserModel
+from app.dao.model.director import Director
+from app.dao.model.genre import Genre
+from app.dao.model.movie import Movie
+from app.dao.model.user import User
 from app.database import db
 
 
@@ -219,10 +219,10 @@ def create_data():
 
     # -------------------------------------------------------
 
-    if not db.session.query(MovieModel).first():
+    if not db.session.query(Movie).first():
         db.session.close()
         for movie in data["movies"]:
-            m = MovieModel(
+            m = Movie(
                 id=movie["pk"],
                 title=movie["title"],
                 description=movie["description"],
@@ -236,7 +236,7 @@ def create_data():
                 db.session.add(m)
 
         for director in data["directors"]:
-            d = DirectorModel(
+            d = Director(
                 id=director["pk"],
                 name=director["name"],
             )
@@ -244,7 +244,7 @@ def create_data():
                 db.session.add(d)
 
         for genre in data["genres"]:
-            d = GenreModel(
+            d = Genre(
                 id=genre["pk"],
                 name=genre["name"],
             )

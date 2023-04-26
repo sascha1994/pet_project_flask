@@ -1,11 +1,22 @@
-from app.dao.base import BaseDAO
-from app.dao.model.movie import MovieModel
+from app.dao.model.movie import Movie
 
 
-class MovieDao(BaseDAO):
+class MovieDAO:
+    def __init__(self, session):
+        self.session = session
 
     def get_by_id(self, movie_id: int):
-        return self.session.query(MovieModel).get(movie_id)
+        return self.session.query(Movie).filter(Movie.id == movie_id).one_or_none()
 
     def get_all(self):
-        return self.session.query(MovieModel).all()
+        query = self.session.query(Movie).join(Movie.genre).join(Movie.director).all()
+        return query
+
+    def get_movies(self):
+        return self.session.query(Movie)
+
+    # def get_new(self, query):
+    #     return query.order_by(Movie.year.desc())
+    #
+    # def get_pages(self, query, limit, offset):
+    #     return query.limit(limit).offset(offset)

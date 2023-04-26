@@ -1,23 +1,32 @@
-from flask_restx import Resource, Namespace
+from flask import request
+from flask_restx import Resource, Namespace, abort
 
+# from decorators import auth_required
 from app.container import movie_service
-from app.dao.serialization.movie import MovieSchema
 
 movies_ns = Namespace('movies')
 
-movie_schema = MovieSchema()
-movies_schema = MovieSchema(many=True)
-
 
 @movies_ns.route('/')
-class GenreView(Resource):
+class MoviesView(Resource):
+    # @auth_required
     def get(self):
-        all_movies = movie_service.get_all()
-        return movies_schema.dump(all_movies), 200
+        # data = {
+        #     'status': request.args.get('status'),
+        #     'page': request.args.get("page")
+        # }
+        movies = movie_service.get_all(data)
+
+        return movies, 200
 
 
-@movies_ns.route('/<int:movie_id>')
-class GenreView(Resource):
-    def get(self, movie_id: int):
-        movie = movie_service.get_by_id(movie_id)
-        return movie_schema.dump(movie), 200
+@movies_ns.route('/<int:mid>')
+class MovieView(Resource):
+    # @auth_required
+    def get(self, mid):
+        movie = movie_service.get_by_id(mid)
+
+        if not movie:
+            abort(404, message='Movie not found')
+
+        return movie, 200

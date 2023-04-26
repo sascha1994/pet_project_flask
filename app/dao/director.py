@@ -1,11 +1,12 @@
-from app.dao.base import BaseDAO
-from app.dao.model.director import DirectorModel
+from app.dao.model.director import Director
 
 
-class DirectorDao(BaseDAO):
+class DirectorDAO:
+    def __init__(self, session):
+        self.session = session
 
     def get_by_id(self, director_id: int):
-        return self.session.query(DirectorModel).get(director_id)
+        return self.session.query(Director).filter(Director.id == director_id).one_or_none()
 
     def get_all(self):
-        return self.session.query(DirectorModel).all()
+        return self.session.query(Director).all()

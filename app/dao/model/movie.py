@@ -1,15 +1,23 @@
-from app.dao.model.director import DirectorModel
-from app.dao.model.genre import GenreModel
-from app.database import db
+from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy.orm import relationship
+
 from app.dao.model.base import BaseModel
+from app.dao.model.director import Director
+from app.dao.model.genre import Genre
 
 
-class MovieModel(BaseModel):
+class Movie(BaseModel):
     __tablename__ = 'movies'
-    title = db.Column(db.String(255))
-    description = db.Column(db.String(255))
-    trailer = db.Column(db.String(255))
-    year = db.Column(db.Integer)
-    rating = db.Column(db.Float)
-    genre_id = db.Column(db.Integer, db.ForeignKey(GenreModel.id))
-    director_id = db.Column(db.Integer, db.ForeignKey(DirectorModel.id))
+
+    title = Column(String(100), unique=True, nullable=False)
+    description = Column(String(100), nullable=False)
+    trailer = Column(String(100), nullable=False)
+    year = Column(Integer, nullable=False)
+    rating = Column(Float(100), nullable=False)
+    genre_id = Column(Integer, ForeignKey(Genre.id))
+    genre = relationship(Genre)
+    director_id = Column(Integer, ForeignKey(Director.id))
+    director = relationship(Director)
+
+
+

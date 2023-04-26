@@ -1,10 +1,17 @@
-from app.dao.model.director import DirectorModel
-from app.services.base import BaseService
+from app.dao.director import DirectorDAO
+from app.dao.serialization.director import DirectorSchema
 
 
-class DirectorService(BaseService[DirectorModel]):
+class DirectorService:
+    def __init__(self, dao: DirectorDAO):
+        self.dao = dao
+
+    def get_item_by_id(self, movie_id: int):
+        director = self.dao.get_by_id(movie_id)
+
+        return DirectorSchema().dump(director)
+
     def get_all(self):
-        return self.dao.get_all()
+        directors = self.dao.get_all()
 
-    def get_by_id(self, director_id: int):
-        return self.dao.get_by_id(director_id)
+        return DirectorSchema(many=True).dump(directors)

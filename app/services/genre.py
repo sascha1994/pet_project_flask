@@ -1,10 +1,17 @@
-from app.dao.model.genre import GenreModel
-from app.services.base import BaseService
+from app.dao.genre import GenreDAO
+from app.dao.serialization.genre import GenreSchema
 
 
-class GenreService(BaseService[GenreModel]):
+class GenreService:
+    def __init__(self, dao: GenreDAO):
+        self.dao = dao
+
+    def get_item_by_id(self, genre_id: int):
+        genre = self.dao.get_by_id(genre_id)
+
+        return GenreSchema().dump(genre)
+
     def get_all(self):
-        return self.dao.get_all()
+        genres = self.dao.get_all()
 
-    def get_by_id(self, genre_id: int):
-        return self.dao.get_by_id(genre_id)
+        return GenreSchema(many=True).dump(genres)

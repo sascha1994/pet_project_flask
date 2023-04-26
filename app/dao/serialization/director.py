@@ -1,7 +1,6 @@
-from marshmallow import fields
-
-from app.dao.serialization.base import BaseSchema
+from marshmallow import Schema, fields
 
 
-class DirectorSchema(BaseSchema):
-    name = fields.Str()
+class DirectorSchema(Schema):
+    id = fields.Int(required=True)
+    name = fields.Str(required=True)
