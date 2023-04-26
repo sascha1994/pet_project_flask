@@ -26,5 +26,4 @@ class MovieService:
         #     movies_query = self.dao.get_pages(movies_query, limit, offset)
         #
         # movies = self.dao.get_all(movies_query)
-
         return MovieSchema(many=True).dump(movies)

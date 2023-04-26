@@ -9,11 +9,11 @@ from app.dao.model.genre import Genre
 class Movie(BaseModel):
     __tablename__ = 'movies'
 
-    title = Column(String(100), unique=True, nullable=False)
-    description = Column(String(100), nullable=False)
-    trailer = Column(String(100), nullable=False)
+    title = Column(String(255), unique=True, nullable=False)
+    description = Column(String(255), nullable=False)
+    trailer = Column(String(255), nullable=False)
     year = Column(Integer, nullable=False)
-    rating = Column(Float(100), nullable=False)
+    rating = Column(Float(255), nullable=False)
     genre_id = Column(Integer, ForeignKey(Genre.id))
     genre = relationship(Genre)
     director_id = Column(Integer, ForeignKey(Director.id))

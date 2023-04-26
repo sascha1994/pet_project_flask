@@ -1,3 +1,5 @@
+from sqlalchemy.orm import subqueryload
+
 from app.dao.model.movie import Movie
 
 

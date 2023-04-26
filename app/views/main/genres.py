@@ -14,7 +14,7 @@ class GenresView(Resource):
         return genres, 200
 
 
-@genres_ns.route('/<int:genre_id>')
+@genres_ns.route('/<int:genre_id>/')
 class GenreView(Resource):
     # @auth_required
     def get(self, genre_id: int):

@@ -1,14 +1,16 @@
-from app.dao.base import BaseDAO
-from app.dao.model.user import UserModel
+from app.dao.model.user import User
 from app.dao.serialization.auth import AuthUserSchema
 
 
-class AuthDAO(BaseDAO):
+class AuthDAO:
 
-    def create(self, email: str, password_hash: str) -> AuthUserSchema:
-        new_user = UserModel(
+    def __init__(self, session):
+        self.session = session
+
+    def create(self, email: str, password_hash: str):
+        new_user = User(
             email=email,
-            password_hash=password_hash
+            password=password_hash
         )
 
         self.session.add(new_user)
@@ -18,9 +20,9 @@ class AuthDAO(BaseDAO):
 
     def get_by_email(self, email: str):
         user = self.session.query(
-            UserModel,
+            User,
         ).filter(
-            UserModel.email == email,
+            User.email == email,
         ).one_or_none()
 
         if user is not None:
