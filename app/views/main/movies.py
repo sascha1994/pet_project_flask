@@ -9,7 +9,6 @@ movies_ns = Namespace('movies')
 
 @movies_ns.route('/')
 class MoviesView(Resource):
-    # @auth_required
     def get(self):
         data = {
             'status': request.args.get('status'),
@@ -22,7 +21,6 @@ class MoviesView(Resource):
 
 @movies_ns.route('/<int:mid>/')
 class MovieView(Resource):
-    # @auth_required
     def get(self, mid):
         movie = movie_service.get_by_id(mid)
 

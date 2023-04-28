@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from flask import current_app
 import jwt
 
-from app.dao.auth import AuthDAO
+from app.dao.auth_dao import AuthDAO
 from app.dao.serialization.auth import AuthUserSchema
 from app.services.excepetions import UserNotFound, WrongPassword
 

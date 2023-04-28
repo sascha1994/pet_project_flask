@@ -12,7 +12,7 @@ class User(BaseModel):
     password = Column(String)
     name = Column(String)
     surname = Column(String)
-    favourite_genre_id = Column(Integer, ForeignKey(Genre.id))
-    favourite_genre = Column(String)
+    favourite_genre = Column(Integer, ForeignKey(Genre.id))
+
 
 

@@ -1,4 +1,4 @@
-from app.dao.director import DirectorDAO
+from app.dao.director_dao import DirectorDAO
 from app.dao.serialization.director import DirectorSchema
 
 

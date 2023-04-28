@@ -1,4 +1,4 @@
-from app.dao.movie import MovieDAO
+from app.dao.movie_dao import MovieDAO
 from app.dao.serialization.movie import MovieSchema
 
 

@@ -1,4 +1,4 @@
-from app.dao.genre import GenreDAO
+from app.dao.genre_dao import GenreDAO
 from app.dao.serialization.genre import GenreSchema
 
 

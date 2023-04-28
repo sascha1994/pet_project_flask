@@ -1,7 +1,9 @@
 from app.dao.model.director import Director
+from app.dao.model.favorite import Favorite
 from app.dao.model.genre import Genre
 from app.dao.model.movie import Movie
 from app.dao.model.user import User
+
 from app.database import db
 
 

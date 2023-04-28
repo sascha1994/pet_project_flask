@@ -12,3 +12,11 @@ class UserNotFound(BaseServiceError):
 
 class WrongPassword(BaseServiceError):
     pass
+
+
+class ItemNotFound(BaseServiceError):
+    pass
+
+
+class WrongPasswords(BaseServiceError):
+    pass
