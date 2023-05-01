@@ -62,10 +62,10 @@ class UsersService:
 
         new_password_hash = self.get_hash(password=new_password)
         print(f"новый сгенерированный хеш {new_password_hash}")
-        print(f"cтарый хеш лежащий у пользователя {user.password_hash}")
+        print(f"cтарый хеш лежащий у пользователя {user.password}")
         print(f"старый пароль который будет генерироваться в хеш и сравниватся с хешем юсера {old_password}")
 
-        if not self.__compare_passwords(user.password_hash, old_password):
+        if not self.compare_passwords(user.password, old_password):
             raise WrongPasswords
 
         user.password_hash = new_password_hash
@@ -73,7 +73,7 @@ class UsersService:
         self.dao.update(user)
 
     @staticmethod
-    def __compare_passwords(password_hash: str, old_password: str) -> bool:
+    def compare_passwords(password_hash: str, old_password: str) -> bool:
         decoded_digest = base64.b64decode(password_hash)
 
         hash_digest = hashlib.pbkdf2_hmac(

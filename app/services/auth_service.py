@@ -61,10 +61,12 @@ class AuthService:
 
     def register(self, email: str, password: str):
         password_hash = self.get_hash(password=password)
-        return self.dao.create(email=email, password_hash=password_hash)
+        new_user = self.dao.create(email=email, password_hash=password_hash)
+        return AuthUserSchema().dump(new_user)
 
     def login(self, email: str, password: str):
-        user = self.dao.get_by_email(email)
+        lg = self.dao.get_by_email(email)
+        user = AuthUserSchema().dump(lg)
 
         if user is None:
             raise UserNotFound

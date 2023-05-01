@@ -10,11 +10,7 @@ movies_ns = Namespace('movies')
 @movies_ns.route('/')
 class MoviesView(Resource):
     def get(self):
-        data = {
-            'status': request.args.get('status'),
-            'page': request.args.get("page")
-        }
-        movies = movie_service.get_all(data)
+        movies = movie_service.get_all()
 
         return movies, 200
 

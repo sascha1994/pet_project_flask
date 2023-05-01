@@ -16,7 +16,7 @@ class AuthDAO:
         self.session.add(new_user)
         self.session.commit()
 
-        return AuthUserSchema().dump(new_user)
+        return new_user
 
     def get_by_email(self, email: str):
         user = self.session.query(
@@ -26,6 +26,6 @@ class AuthDAO:
         ).one_or_none()
 
         if user is not None:
-            return AuthUserSchema().dump(user)
+            return user
 
         return None

@@ -3,7 +3,6 @@ from flask_cors import CORS
 from flask_restx import Api
 
 from app.database import db
-from app.helpers.create_data import create_data
 from app.views.auth.auth import auth_ns
 from app.views.auth.favorites import favorite_ns
 from app.views.auth.user import user_ns

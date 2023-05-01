@@ -12,4 +12,6 @@ class Config(object):
     HASH_NAME = 'sha256'
     HASH_SALT = 'secret here'
     HASH_ITERATIONS = 100_000
+
+    ITEMS_PER_PAGE = 12
    

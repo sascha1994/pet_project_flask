@@ -16,9 +16,3 @@ class MovieDAO:
 
     def get_movies(self):
         return self.session.query(Movie)
-
-    # def get_new(self, query):
-    #     return query.order_by(Movie.year.desc())
-    #
-    # def get_pages(self, query, limit, offset):
-    #     return query.limit(limit).offset(offset)
