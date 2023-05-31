@@ -1,6 +1,5 @@
 from flask_restx import Resource, Namespace
 
-# from decorators import auth_required
 from app.container import director_service
 
 directors_ns = Namespace('directors')

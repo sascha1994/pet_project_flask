@@ -9,3 +9,11 @@ def app():
     app = create_app(Config)
     with app.app_context():
         yield app
+
+
+@pytest.fixture
+def client(app):
+
+    with app.test_client() as client:
+        with app.app_context():
+            yield client
